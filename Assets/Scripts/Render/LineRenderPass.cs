@@ -59,13 +59,14 @@ public class LineRenderPass : ScriptableRenderPass {
   }
   
   private static void ExecutePass(PassData data, RasterGraphContext ctx) {
+    ctx.cmd.SetViewProjectionMatrices(data.viewMatrix, data.projectionMatrix);
+    
     var props = new MaterialPropertyBlock();
     props.SetBuffer(INSTANCE_BUFFER, data.instanceBuffer);
     
     foreach (var batchData in data.collectedData.batchData) {
       props.SetInteger(INSTANCE_OFFSET, batchData.instanceOffset);
       
-      ctx.cmd.SetViewProjectionMatrices(data.viewMatrix, data.projectionMatrix);
       ctx.cmd.DrawProcedural(Matrix4x4.identity, batchData.material, 0, MeshTopology.Triangles, 6, batchData.instanceCount, props);
     }
   }
@@ -92,6 +93,7 @@ public class LineRenderPass : ScriptableRenderPass {
     builder.SetRenderAttachment(resourceData.activeColorTexture, 0);
     builder.SetRenderFunc(static (PassData data, RasterGraphContext ctx) => ExecutePass(data, ctx));
     builder.AllowPassCulling(false);
+    builder.AllowGlobalStateModification(true);
 
     // Set data
     passData.instanceBuffer = m_instanceBuffer;

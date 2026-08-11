@@ -1,5 +1,10 @@
+using System;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
+
+// TODO fix first frame nullptr
+// TODO better batching (sorting by material id)
+// TODO measure time
 
 public class SparkRendererFeature : ScriptableRendererFeature {
   public static SparkRendererFeature Instance { get; private set; }
@@ -16,7 +21,11 @@ public class SparkRendererFeature : ScriptableRendererFeature {
     
     Instance ??= this;
   }
-  
+
+  private void OnDestroy() {
+    Dispose(true);
+  }
+
   protected override void Dispose(bool disposing) {
     if (Instance != this) {
       return;

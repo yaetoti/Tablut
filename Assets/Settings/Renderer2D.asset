@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e125c075952b4973ba1686338de2fde2, type: 3}
   m_Name: LineRenderFeature
   m_EditorClassIdentifier: Assembly-CSharp::LineRenderFeature
-  m_Active: 1
+  m_Active: 0
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0

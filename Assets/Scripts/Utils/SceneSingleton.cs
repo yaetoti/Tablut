@@ -7,7 +7,7 @@ public abstract class SceneSingleton<T> : MonoBehaviour where T : SceneSingleton
   //   DomainReloadRegistry.OnReload += () => { Instance = null; };
   // }
   
-  protected virtual void Awake() {
+  private void Awake() {
     if (Instance == this) {
       return;
     }
@@ -18,11 +18,18 @@ public abstract class SceneSingleton<T> : MonoBehaviour where T : SceneSingleton
     }
 
     Instance = this as T;
+    Initialize();
   }
 
-  protected virtual void OnDestroy() {
-    if (Instance == this) {
-      Instance = null;
+  private void OnDestroy() {
+    if (Instance != this) {
+      return;
     }
+
+    Instance = null;
+    Cleanup();
   }
+
+  protected abstract void Initialize();
+  protected abstract void Cleanup();
 }
