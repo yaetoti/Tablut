@@ -163,7 +163,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d70ce9ae6164b6a841b01003f844734, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TestDrawLines
-  material: {fileID: 2100000, guid: ff06f3ccb042b5d4abdae7eba1375508, type: 2}
+  material: {fileID: 2100000, guid: 6835541065eeec84ea25a8cab4485307, type: 2}
 --- !u!1 &483196876
 GameObject:
   m_ObjectHideFlags: 0
@@ -229,7 +229,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 9452ae1262a74094f8a68013fbcd1834, type: 2}
+  - {fileID: 2100000, guid: 687ab3660239cf240bafcb3525151b05, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -270,7 +270,7 @@ Transform:
   m_GameObject: {fileID: 483196876}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.1675, y: 2.98264, z: -7.65061}
+  m_LocalPosition: {x: -0.4, y: -0.19, z: 2.92}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

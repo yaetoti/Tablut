@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Test
+  m_Name: Line0
   m_Shader: {fileID: -6465566751694194690, guid: 2a692e452f2b9f34ca2d4dad2b81e15a, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -68,8 +68,10 @@ Material:
     m_Ints: []
     m_Floats:
     - _EnableExternalAlpha: 0
+    - _LineThickness: 1
     - _QueueControl: 0
     - _QueueOffset: 0
+    - _Thickness: 7.46
     - _ZWrite: 0
     m_Colors:
     - _Color: {r: 1, g: 0, b: 0, a: 1}

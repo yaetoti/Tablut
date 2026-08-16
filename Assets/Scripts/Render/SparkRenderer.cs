@@ -3,6 +3,7 @@ using System.Runtime.InteropServices;
 using UnityEngine;
 using UnityEngine.Rendering;
 
+[ExecuteAlways]
 [DefaultExecutionOrder(-1000)]
 public class SparkRenderer : SceneSingleton<SparkRenderer> {
   private static readonly int INSTANCE_BUFFER = Shader.PropertyToID("_InstanceBuffer");
@@ -45,20 +46,23 @@ public class SparkRenderer : SceneSingleton<SparkRenderer> {
 
   protected override void Cleanup() {
     m_instanceBuffer?.Dispose();
+    m_instanceBuffer = null;
   }
 
   private void OnEnable() {
-    RenderPipelineManager.beginCameraRendering += OnBeginCameraRendering;
+    RenderPipelineManager.beginContextRendering += OnBeginFrameRendering;
   }
 
   private void OnDisable() {
-    RenderPipelineManager.beginCameraRendering -= OnBeginCameraRendering;
+    RenderPipelineManager.beginContextRendering -= OnBeginFrameRendering;
+    m_instanceBuffer?.Dispose();
+    m_instanceBuffer = null;
   }
 
-  private void OnBeginCameraRendering(ScriptableRenderContext ctx, Camera camera) {
-    if (camera.cameraType != CameraType.Game && camera.cameraType != CameraType.Preview) {
-      return;
-    }
+  private void OnBeginFrameRendering(ScriptableRenderContext ctx, List<Camera> camera) {
+    // if (camera.cameraType != CameraType.Game && camera.cameraType != CameraType.SceneView) {
+    //   return;
+    // }
 
     if (m_collectedData.Count == 0) {
       return;
@@ -114,6 +118,8 @@ public class SparkRenderer : SceneSingleton<SparkRenderer> {
     // Render
     foreach (var batch in batches) {
       var rp = new RenderParams(batch.material) { matProps = new() };
+      // TODO crutch
+      rp.worldBounds = new(Vector3.zero, 10000 * Vector3.one);
       rp.matProps.SetBuffer(INSTANCE_BUFFER, m_instanceBuffer);
       rp.matProps.SetInteger(INSTANCE_OFFSET, batch.start);
       
