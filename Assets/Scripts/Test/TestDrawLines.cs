@@ -1,12 +1,12 @@
 using UnityEngine;
 
-[ExecuteAlways]
+//[ExecuteAlways]
 public class TestDrawLines : MonoBehaviour {
   public Material material;
 
   private void Update() {
     const float thickness = 3.0f;
-    for (float z = 0.0f; z < 1000.0f; z += 100.0f) {
+    for (float z = 0.0f; z < 10.0f; z += 0.1f) {
       //Spark2D.Line(material, );
       
       Spark.Line(material, new(-5.0f,  1.5f, z), new(-5.0f, -1.5f, z), thickness);

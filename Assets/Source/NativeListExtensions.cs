@@ -4,7 +4,7 @@ using Unity.Collections;
 
 public static class NativeListExtensions {
   private struct SortIndicesComparer<T> : IComparer<int> where T : unmanaged, IComparable<T> {
-    private NativeArray<T> m_keys;
+    [ReadOnly] private NativeArray<T> m_keys;
 
     public SortIndicesComparer(NativeArray<T> keys) {
       m_keys = keys;
@@ -34,7 +34,11 @@ public static class NativeListExtensions {
       indices[i] = i;
     }
     
+    // var job = indices.SortJob(new SortIndicesComparer<T>(arr.AsArray()));
+    // job.Schedule().Complete();
+    
     indices.Sort(new SortIndicesComparer<T>(arr.AsArray()));
+    
     return indices;
   }
   

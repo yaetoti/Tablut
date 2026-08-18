@@ -41,7 +41,7 @@ where TData : unmanaged {
     m_instanceBuffer = null;
   } 
   
-  public void Add(TData data, Material material) {
+  public void Add(Material material, TData data) {
     // Add material lookup
     var materialId = material.GetEntityId();
     m_materials.TryAdd(materialId, material);
@@ -69,7 +69,11 @@ where TData : unmanaged {
     }
     
     // Set instance buffer data
-    m_instanceBuffer = new(GraphicsBuffer.Target.Structured, bufferSize, UnsafeUtility.SizeOf<TData>());
+    if (m_instanceBuffer is null || m_instanceBuffer.count < bufferSize) {
+      m_instanceBuffer?.Dispose();
+      m_instanceBuffer = new(GraphicsBuffer.Target.Structured, bufferSize, UnsafeUtility.SizeOf<TData>());
+    }
+    
     m_instanceBuffer.SetData(m_data.AsArray());
     
     // Collect ranges
@@ -108,7 +112,7 @@ where TData : unmanaged {
   
   private void ClearResultData() {
     m_ranges.Clear();
-    m_instanceBuffer?.Dispose();
-    m_instanceBuffer = null;
+    //m_instanceBuffer?.Dispose();
+    //m_instanceBuffer = null;
   }
 }
