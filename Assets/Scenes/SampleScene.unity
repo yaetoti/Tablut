@@ -163,7 +163,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d70ce9ae6164b6a841b01003f844734, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TestDrawLines
-  material: {fileID: 2100000, guid: 6835541065eeec84ea25a8cab4485307, type: 2}
 --- !u!1 &483196876
 GameObject:
   m_ObjectHideFlags: 0
@@ -455,6 +454,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53680e6023223e24f881cb71b840932d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SparkRenderer
+  defaultLineMaterial: {fileID: 2100000, guid: 706f19685b65d2e4d85168f3b88f8026, type: 2}
 --- !u!4 &863648522
 Transform:
   m_ObjectHideFlags: 0
@@ -500,9 +500,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FlyingCamera
   moveSpeed: 5
-  sprintMultiplier: 2
+  sprintMultiplier: 4
   mouseSensitivity: 2
-  rollSpeed: 45
+  rollSpeed: 90
 --- !u!4 &2144856439
 Transform:
   m_ObjectHideFlags: 0
